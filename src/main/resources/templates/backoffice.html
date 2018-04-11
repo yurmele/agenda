@@ -24,28 +24,27 @@
 		</nav>
 	</div>
 	<div class="container">
-	<h3>
+		<h3>
 			<a href="new">Clic para crear una nueva categoria</a>
 		</h3>
 
 		<table border="1">
-		<tr>
-			<th>idCategorias</th>
-			<th>Nombre</th>
-			<th>Descripcion</th>			
+			<tr>
+				<th>idCategorias</th>
+				<th>Nombre</th>
+				<th>Descripcion</th>
 			</tr>
-			
 
-				<tr th:each="categoria : ${categorias}>
-					<td>${categoria.idcategorias}</td>
-					<td>${categoria.nombre}</td>
-					<td>${categoria.descripcion}</td>
-					<td><a href="edit?id=${categoria.idcategorias}">Modificar</a>
-						&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${categoria.idcategorias}">Eliminar</a>
-					</td>
-				</tr>
+			<tr th:each="categoria : ${categorias}">				
+				<td><span th:text="${categoria.idcategorias}"></span></td>
+				<td><span th:text="${categoria.nombre}"></span></td>
+				<td><span th:text="${categoria.descripcion}"></span></td>
+				
+						
+			</tr>
+
 		</table>
-</div>	
+	</div>
 
 	<script type="text/javascript" src="../../js/jquery.min.js"
 		th:src="@{/js/jquery.min.js}"></script>

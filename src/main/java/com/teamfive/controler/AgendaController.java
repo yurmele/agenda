@@ -33,7 +33,7 @@ public class AgendaController {
 	@RequestMapping("/newCategoria")
 	public ModelAndView listCategoria () throws Exception {
 		Iterable<Categorias> listCategorias = agendaService.listCategoria();
-		ModelAndView model = new ModelAndView("inicio");
+		ModelAndView model = new ModelAndView("backoffice");
 		model.addObject("categorias", listCategorias);
 		return model;
 	}
@@ -45,8 +45,9 @@ public class AgendaController {
 		return model;		
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView editCategoria(HttpServletRequest request) {
+		System.out.println("Hola tio");
 		int categoriaId = Integer.parseInt(request.getParameter("id"));
 		Optional<Categorias> categoria=agendaService.get(categoriaId);
 		ModelAndView model = new ModelAndView("UserForm");
@@ -61,7 +62,7 @@ public class AgendaController {
 		return new ModelAndView("redirect:/");		
 	}
 	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public ModelAndView saveCategoria(@ModelAttribute Categorias categorias) {
 		agendaService.saveOrUpdate(categorias);
 		return new ModelAndView("redirect:/");

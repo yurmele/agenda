@@ -12,8 +12,28 @@
 <body>
 	<div align="center">
 		<h1>FORMULARIO DE USUARIOS (add/edit)</h1>
-		<table>
-		
+		<table>		
+		<form th:action="@{new}" th:object="${categorias}" method="post">
+    <fieldset>
+        <legend>Datos del usuario</legend>
+        <table>
+            <tr>
+                <td><label th:text="Nombre">Nombre</label></td>
+                <td><input type="text" th:field="*{nombre}" /></td>
+            </tr>
+            <tr>
+                <td><label th:text="Descripcion">Descripcion:</label></td>
+                <td><input type="text" th:field="*{descripcion}" /></td>
+           </tr>
+            <tr>
+                <td>
+                    <button type="submit">Registrar...</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>		
+					
 		</table>
 	</div>
 
