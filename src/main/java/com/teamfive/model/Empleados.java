@@ -12,27 +12,40 @@ import javax.persistence.*;
 public class Empleados {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idempleados;
-	private String codEmpleado;
+	private String codempleado;
 	private int salario;
-	private Date fechaAlta;
-	private int idDepartamento;
-	private int idCategoria;
+	private Date fechaalta;
+	private int iddepartamento;
+	private int idcategoria;
 	
+
+	   @OneToOne(fetch = FetchType.LAZY)
+	    @JoinColumn(name = "idempleado", nullable = false)
+	private Personas personas;
+	
+
+	public Personas getPersonas() {
+		return personas;
+	}
+
+	public void setPersonas(Personas personas) {
+		this.personas = personas;
+	}
+
 	public Empleados(){
 		
 	}
 
-	public Empleados(int idempleados, String codEmpleado, int salario, Date fechaAlta, int idDepartamento,
+	public Empleados( String codEmpleado, int salario, Date fechaAlta, int idDepartamento,
 			int idCategoria) {
 		super();
-		this.idempleados = idempleados;
-		this.codEmpleado = codEmpleado;
+		this.codempleado = codEmpleado;
 		this.salario = salario;
-		this.fechaAlta = fechaAlta;
-		this.idDepartamento = idDepartamento;
-		this.idCategoria = idCategoria;
+		this.fechaalta = fechaAlta;
+		this.iddepartamento = idDepartamento;
+		this.idcategoria = idCategoria;
 	}
 
 	public int getIdempleados() {
@@ -43,12 +56,12 @@ public class Empleados {
 		this.idempleados = idempleados;
 	}
 
-	public String getCodEmpleado() {
-		return codEmpleado;
+	public String getCodempleado() {
+		return codempleado;
 	}
 
-	public void setCodEmpleado(String codEmpleado) {
-		this.codEmpleado = codEmpleado;
+	public void setCodempleado(String codempleado) {
+		this.codempleado = codempleado;
 	}
 
 	public int getSalario() {
@@ -59,36 +72,37 @@ public class Empleados {
 		this.salario = salario;
 	}
 
-	public Date getFechaAlta() {
-		return fechaAlta;
+	public Date getFechaalta() {
+		return fechaalta;
 	}
 
-	public void setFechaAlta(Date fechaAlta) {
-		this.fechaAlta = fechaAlta;
+	public void setFechaalta(Date fechaalta) {
+		this.fechaalta = fechaalta;
 	}
 
-	public int getIdDepartamento() {
-		return idDepartamento;
+	public int getIddepartamento() {
+		return iddepartamento;
 	}
 
-	public void setIdDepartamento(int idDepartamento) {
-		this.idDepartamento = idDepartamento;
+	public void setIddepartamento(int iddepartamento) {
+		this.iddepartamento = iddepartamento;
 	}
 
-	public int getIdCategoria() {
-		return idCategoria;
+	public int getIdcategoria() {
+		return idcategoria;
 	}
 
-	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setIdcategoria(int idcategoria) {
+		this.idcategoria = idcategoria;
 	}
 
 	@Override
 	public String toString() {
-		return "Empleados [idempleados=" + idempleados + ", codEmpleado=" + codEmpleado + ", salario=" + salario
-				+ ", fechaAlta=" + fechaAlta + ", idDepartamento=" + idDepartamento + ", idCategoria=" + idCategoria
+		return "Empleados [idempleados=" + idempleados + ", codempleado=" + codempleado + ", salario=" + salario
+				+ ", fechaalta=" + fechaalta + ", iddepartamento=" + iddepartamento + ", idcategoria=" + idcategoria
 				+ "]";
 	}
+
 	
 	
 	

@@ -4,61 +4,128 @@
 <meta charset="UTF-8">
 
 <title>LISTADO DE USUARIOS</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"
-	href="../../css/bootstrap.css" media="screen" />
-<link rel="stylesheet" type="text/css"
-	th:href="@{/css/materialize.min.css}" href="../../materialize.min.css" />
+
+
+<link href="webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" media="screen" />
 
 </head>
 <body>
 
-	<div class="navbar-fixed">
-		<nav>
-			<div class="nav-wrapper">
-				<a href="#!" class="brand-logo">Logo</a>
-				<ul class="right hide-on-med-and-down">
-					<li><a href="sass.html">Sass</a></li>
-					<li><a href="badges.html">Components</a></li>
-					<li><a href="newCategoria">BackOffice</a></li>
-				</ul>
+
+
+	<div class="container" style="border: 1px solid #cecece;">
+		<div class="row">
+			<table class="table col col-lg-12">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Apellidos</th>
+						<th scope="col">Departamento</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="persona : ${userList}">
+						<th scope="row">1</th>
+						<td th:text="${persona.nombre}"></td>
+						<td th:text="${persona.apellido1 + ' ' + persona.apellido2}"></td>
+						<td>@mdo</td>
+					</tr>
+
+				</tbody>
+			</table>
+			<div class="col col-lg-12 text-center">
+				<input class="btn btn-circle-micro btn-primary  center-block"
+					data-toggle="modal" data-target="#exampleModal" type="image"
+					th:src="@{/img/add.png}" />
 			</div>
-		</nav>
+		</div>
+
 	</div>
 
-	<div class="container">
-		<ul class="collection">
-			<li class="collection-item avatar" th:each="persona : ${userList}">
-				<i class="material-icons circle green"></i> 
-				<span class="title"	th:text="${persona.nombre  + ' ' + persona.apellido1 + ' ' + persona.apellido2}">Title</span>
-				<p>
-					First Line <br> Second Line
-				</p> <a href="#!" class="secondary-content"> </a>
-			</li>
-		</ul>
-	</div>		
-	
-	
-	<a href="newCategoria">Categoria</a>
-	<div class="container">
-		<ul class="collection">
-			<li class="collection-item avatar" th:each="categoria : ${categorias}">
-				<i class="material-icons circle green"></i> 
-				<span class="title"	th:text="${categoria.nombre + ' ' + categoria.descripcion}">Title</span>
-				<p>
-					First Line <br> Second Line
-				</p> <a href="#!" class="secondary-content"></a>
-			</li>
-		</ul>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/agregarcontacto}" th:object="${person}"
+						method="post">
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="inputEmail4">Nombre</label> <input type="text"
+									th:field="*{nombre}" class="form-control" placeholder="Nombre">
+							</div>
+
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputPassword4"> Apellido</label> <input type="text"
+									th:field="*{apellido1}" class="form-control"
+									placeholder="Apellidos">
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputPassword4">Segundo apellido</label> <input
+									type="text" th:field="*{apellido2}" class="form-control"
+									placeholder="Apellidos">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-5">
+								<label for="inputPassword4"> DNI</label> <input type="text"
+									th:field="*{dni}" class="form-control" placeholder="Apellidos">
+							</div>
+							<div class="form-group col-md-2">
+								<label for="inputPassword4"> for</label> <input type="text"
+									th:field="*{idempleado}" class="form-control"
+									placeholder="Apellidos">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputState">Departamentos</label> <select id="inputState"
+									class="form-control">
+									<option th:each="depar : ${departamentos}" th:value="${depar.nombre}" th:text="${depar.nombre}"></option>
+								</select>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Sign in</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
 	</div>
-	</div>
+
 
 	<script type="text/javascript" src="../../js/jquery.min.js"
 		th:src="@{/js/jquery.min.js}"></script>
 	<script type="text/javascript" src="../../js/bootstrap.js"
 		th:src="@{/js/bootstrap.js}"></script>
-	<script type="text/javascript" src="../../js/materialize.js"
-		th:src="@{/js/materialize.js}"></script>
 
+
+	<script type="text/javascript">
+		$('#exampleModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+			var recipient = button.data('whatever') // Extract info from data-* attributes
+			// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+			// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+			var modal = $(this)
+			modal.find('.modal-title').text('New message to ' + recipient)
+			modal.find('.modal-body input').val(recipient)
+
+		});
+	</script>
 
 </body>
 </html>

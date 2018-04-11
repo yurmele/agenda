@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamfive.model.Categorias;
+import com.teamfive.model.Departamentos;
 import com.teamfive.model.Personas;
 import com.teamfive.service.AgendaService;
 
@@ -25,8 +26,12 @@ public class AgendaController {
 	public ModelAndView handleRequest() throws Exception {
 		listCategoria();	
 		Iterable<Personas> listUsers = agendaService.list();
+		Iterable<Departamentos> listDepar = agendaService.listDepartamentos();
+
 		ModelAndView model = new ModelAndView("inicio");
 		model.addObject("userList", listUsers);
+		model.addObject("departamentos", listDepar);
+		model.addObject("person",new Personas());
 		return model;
 	}	
 	
@@ -38,10 +43,10 @@ public class AgendaController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	public ModelAndView newCategoria() {
-		ModelAndView model = new ModelAndView("UserForm");
-		model.addObject("categorias", new Categorias());
+	@RequestMapping(value = "/agregarcontacto", method = RequestMethod.POST)
+	public ModelAndView newCategoria(Personas person) {
+		agendaService.savePerson(person);
+		ModelAndView model = new ModelAndView("redirect:/");
 		return model;		
 	}
 	

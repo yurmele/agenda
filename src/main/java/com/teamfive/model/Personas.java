@@ -9,17 +9,26 @@ import javax.persistence.*;
 public class Personas {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idpersonas;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
 	private int dni;
-	
 	private Date fechanacimiento;
-	
-	
 	private int idempleado;
+
+
+	private Empleados empleados;
+	 
+	  public Empleados getEmpleados() {
+		return empleados;
+	}
+
+	public void setEmpleados(Empleados empleados) {
+		this.empleados = empleados;
+	}
+
 	
 	public Personas(){
 		
@@ -36,6 +45,8 @@ public class Personas {
 		this.fechanacimiento = fechanacimiento;
 		this.idempleado = idEmpleado;
 	}
+
+
 
 	public int getIdpersonas() {
 		return idpersonas;
@@ -77,29 +88,30 @@ public class Personas {
 		this.dni = dni;
 	}
 
-	public Date getFechaNacimiento() {
+	public Date getFechanacimiento() {
 		return fechanacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechanacimiento = fechaNacimiento;
+	public void setFechanacimiento(Date fechanacimiento) {
+		this.fechanacimiento = fechanacimiento;
 	}
 
-	public int getIdEmpleado() {
+	public int getIdempleado() {
 		return idempleado;
 	}
 
-	public void setIdEmpleado(int idEmpleado) {
-		this.idempleado = idEmpleado;
+	public void setIdempleado(int idempleado) {
+		this.idempleado = idempleado;
 	}
 
 	@Override
 	public String toString() {
 		return "Personas [idpersonas=" + idpersonas + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
-				+ apellido2 + ", dni=" + dni + ", fechaNacimiento=" + fechanacimiento + ", idEmpleado=" + idempleado
+				+ apellido2 + ", dni=" + dni + ", fechanacimiento=" + fechanacimiento + ", idempleado=" + idempleado
 				+ "]";
 	}
-	
+
+
 	
 	
 
