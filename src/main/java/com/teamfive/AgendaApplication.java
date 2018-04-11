@@ -1,9 +1,9 @@
-package com.teamfive.configuration;
+package com.teamfive;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages={"com.teamfive"})
 public class AgendaApplication {
 
 	public static void main(String[] args) {

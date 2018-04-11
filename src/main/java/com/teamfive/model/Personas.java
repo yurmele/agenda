@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "personas")
-
 public class Personas {
 	
 	@Id
@@ -16,14 +15,17 @@ public class Personas {
 	private String apellido1;
 	private String apellido2;
 	private int dni;
-	private Date fechaNacimiento;
-	private int idEmpleado;
+	
+	private Date fechanacimiento;
+	
+	
+	private int idempleado;
 	
 	public Personas(){
 		
 	}
 
-	public Personas(int idpersonas, String nombre, String apellido1, String apellido2, int dni, Date fechaNacimiento,
+	public Personas(int idpersonas, String nombre, String apellido1, String apellido2, int dni, Date fechanacimiento,
 			int idEmpleado) {
 		super();
 		this.idpersonas = idpersonas;
@@ -31,8 +33,8 @@ public class Personas {
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
 		this.dni = dni;
-		this.fechaNacimiento = fechaNacimiento;
-		this.idEmpleado = idEmpleado;
+		this.fechanacimiento = fechanacimiento;
+		this.idempleado = idEmpleado;
 	}
 
 	public int getIdpersonas() {
@@ -76,25 +78,25 @@ public class Personas {
 	}
 
 	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+		return fechanacimiento;
 	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+		this.fechanacimiento = fechaNacimiento;
 	}
 
 	public int getIdEmpleado() {
-		return idEmpleado;
+		return idempleado;
 	}
 
 	public void setIdEmpleado(int idEmpleado) {
-		this.idEmpleado = idEmpleado;
+		this.idempleado = idEmpleado;
 	}
 
 	@Override
 	public String toString() {
 		return "Personas [idpersonas=" + idpersonas + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
-				+ apellido2 + ", dni=" + dni + ", fechaNacimiento=" + fechaNacimiento + ", idEmpleado=" + idEmpleado
+				+ apellido2 + ", dni=" + dni + ", fechaNacimiento=" + fechanacimiento + ", idEmpleado=" + idempleado
 				+ "]";
 	}
 	

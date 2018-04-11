@@ -1,4 +1,4 @@
-package com.teamfive.configuration;
+package com.teamfive;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
