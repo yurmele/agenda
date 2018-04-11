@@ -13,11 +13,11 @@ public class Categorias {
 	private String nombre;
 	private String descripcion;
 	
-	private Categorias(){
+	public Categorias(){
 		
 	}
 	
-	private Categorias(int idcategorias, String nombre , String descripcion){
+	public Categorias(int idcategorias, String nombre , String descripcion){
 		this.idcategorias=idcategorias;
 		this.nombre=nombre;
 		this.descripcion=descripcion;

@@ -23,33 +23,29 @@
 			</div>
 		</nav>
 	</div>
+	<div class="container">
+	<h3>
+			<a href="new">Clic para crear una nueva categoria</a>
+		</h3>
 
-	<div class="container">
-		<ul class="collection">
-			<li class="collection-item avatar" th:each="persona : ${userList}">
-				<i class="material-icons circle green"></i> 
-				<span class="title"	th:text="${persona.nombre  + ' ' + persona.apellido1 + ' ' + persona.apellido2}">Title</span>
-				<p>
-					First Line <br> Second Line
-				</p> <a href="#!" class="secondary-content"> </a>
-			</li>
-		</ul>
-	</div>		
-	
-	
-	<a href="newCategoria">Categoria</a>
-	<div class="container">
-		<ul class="collection">
-			<li class="collection-item avatar" th:each="categoria : ${categorias}">
-				<i class="material-icons circle green"></i> 
-				<span class="title"	th:text="${categoria.nombre + ' ' + categoria.descripcion}">Title</span>
-				<p>
-					First Line <br> Second Line
-				</p> <a href="#!" class="secondary-content"></a>
-			</li>
-		</ul>
-	</div>
-	</div>
+		<table border="1">
+		<tr>
+			<th>idCategorias</th>
+			<th>Nombre</th>
+			<th>Descripcion</th>			
+			</tr>
+			
+
+				<tr th:each="categoria : ${categorias}>
+					<td>${categoria.idcategorias}</td>
+					<td>${categoria.nombre}</td>
+					<td>${categoria.descripcion}</td>
+					<td><a href="edit?id=${categoria.idcategorias}">Modificar</a>
+						&nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=${categoria.idcategorias}">Eliminar</a>
+					</td>
+				</tr>
+		</table>
+</div>	
 
 	<script type="text/javascript" src="../../js/jquery.min.js"
 		th:src="@{/js/jquery.min.js}"></script>

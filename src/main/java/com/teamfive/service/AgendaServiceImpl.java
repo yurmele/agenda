@@ -1,6 +1,8 @@
 package com.teamfive.service;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +20,7 @@ public class AgendaServiceImpl implements AgendaService {
 	@Autowired
 	UserDAOImpl impl;
 	@Autowired
-	CategoriaDAOImpl implCat;
-	
+	CategoriaDAOImpl implCat;	
 	
 	
 	public Iterable<Personas> list() {
@@ -28,5 +29,22 @@ public class AgendaServiceImpl implements AgendaService {
 	
 	public Iterable<Categorias> listCategoria() {
 		return implCat.findAll();
+	}
+	
+	@Override
+	public Optional<Categorias> get(int idcategorias) {
+		return implCat.findById(idcategorias);
+	}
+
+	@Override
+	public void saveOrUpdate(Categorias categorias) {
+		implCat.save(categorias);
+
+	}
+
+	@Override
+	public void delete(int idcategorias) {
+		implCat.deleteById(idcategorias);
+
 	}
 }
