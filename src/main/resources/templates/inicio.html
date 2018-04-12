@@ -43,9 +43,10 @@
 		</div>
 
 	</div>
-	
-	
-	
+
+
+
+
 
 
 	<div class="container">
@@ -70,7 +71,8 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="">Crear Categoria</span>
 				</div>
-				<input type="text" class="form-control" placeholder="Nombre" th:field="*{nombre}"> 
+				<input type="text" class="form-control" placeholder="Nombre"
+					th:field="*{nombre}">
 				<button type="submit" class="btn btn-primary">Crear</button>
 			</div>
 		</form>
@@ -134,6 +136,44 @@
 
 			</div>
 		</div>
+	</div>
+
+	<div class="container" style="border: 1px solid #cecece;">
+		<div class="row">
+			<table class="table col col-lg-12">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">IdCategoria</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Descripcion</th>
+						<th scope="col">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="categoria : ${userCat}">
+						<th scope="row">1</th>
+						<td th:text="${categoria.idcategorias}"></td>
+						<td th:text="${categoria.nombre + ' ' + categoria.descripcion}"></td>
+
+						<td>@mdo</td>
+
+						
+						<td><a th:href="@{/delete${categoria.idcategorias}}">Delete</a>
+						</td>
+
+
+					</tr>
+
+				</tbody>
+			</table>
+			<div class="col col-lg-12 text-center">
+				<input class="btn btn-circle-micro btn-primary  center-block"
+					data-toggle="modal" data-target="#exampleModal" type="image"
+					th:src="@{/img/add.png}" />
+			</div>
+		</div>
+
 	</div>
 
 

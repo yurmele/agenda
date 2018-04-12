@@ -54,7 +54,7 @@ public class AgendaController {
 		return model;		
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{idcategorias}", method = RequestMethod.GET)
 	public ModelAndView deleteCategoria(HttpServletRequest request) {
 		int userId = Integer.parseInt(request.getParameter("idcategorias"));
 		agendaService.delete(userId);
@@ -74,11 +74,6 @@ public class AgendaController {
 		return model;		
 	}
 	
-	@RequestMapping(value = "/eliminarCategorias", method = RequestMethod.POST)
-	public ModelAndView eliminarCategorias(Categorias categorias) {
-		agendaService.saveOrUpdate(categorias);
-		ModelAndView model = new ModelAndView("redirect:/");
-		return model;	
 		
 		
 	@RequestMapping(value = "/agregarDepartamentos", method = RequestMethod.POST)
