@@ -56,9 +56,11 @@ public class AgendaServiceImpl implements AgendaService {
 
 	@Override
 	public void savePerson(Personas per) {///save person tambien deberia enviar desde control el departamento que recibio del combobox
-		Empleados em=generarEmpleado(null);
+	
+		/*
+		 * Empleados em=generarEmpleado(null);
 		per.setEmpleados(em);
-		em.setPersonas(per);
+		em.setPersonas(per);*/
 		
 		impl.save(per);
 		

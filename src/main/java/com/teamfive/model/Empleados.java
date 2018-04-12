@@ -21,18 +21,8 @@ public class Empleados {
 	private int idcategoria;
 	
 
-	   @OneToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "idempleado", nullable = false)
-	private Personas personas;
-	
+	  
 
-	public Personas getPersonas() {
-		return personas;
-	}
-
-	public void setPersonas(Personas personas) {
-		this.personas = personas;
-	}
 
 	public Empleados(){
 		

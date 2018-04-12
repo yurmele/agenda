@@ -19,15 +19,6 @@ public class Personas {
 	private int idempleado;
 
 
-	private Empleados empleados;
-	 
-	  public Empleados getEmpleados() {
-		return empleados;
-	}
-
-	public void setEmpleados(Empleados empleados) {
-		this.empleados = empleados;
-	}
 
 	
 	public Personas(){
