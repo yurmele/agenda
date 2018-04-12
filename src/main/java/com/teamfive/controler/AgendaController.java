@@ -23,32 +23,26 @@ public class AgendaController {
 	@Autowired
 	private AgendaService agendaService;
 	@RequestMapping("/")
-	public ModelAndView handleRequest() throws Exception {
-		listCategoria();	
+	public ModelAndView handleRequest() throws Exception {		
 		Iterable<Personas> listUsers = agendaService.list();
 		Iterable<Departamentos> listDepar = agendaService.listDepartamentos();
-
+		Iterable<Categorias> listCat= agendaService.listCategoria();
 		ModelAndView model = new ModelAndView("inicio");
+		model.addObject("categorias", new Categorias());
+		model.addObject("depart", new Departamentos());
 		model.addObject("userList", listUsers);
 		model.addObject("departamentos", listDepar);
+		model.addObject("userCat", listCat);
 		model.addObject("person",new Personas());
 		return model;
 	}	
-	
-	@RequestMapping("/newCategoria")
-	public ModelAndView listCategoria () throws Exception {
-		Iterable<Categorias> listCategorias = agendaService.listCategoria();
-		ModelAndView model = new ModelAndView("backoffice");
-		model.addObject("categorias", listCategorias);
-		return model;
-	}
 	
 	@RequestMapping(value = "/agregarcontacto", method = RequestMethod.POST)
 	public ModelAndView newCategoria(Personas person) {
 		agendaService.savePerson(person);
 		ModelAndView model = new ModelAndView("redirect:/");
 		return model;		
-	}
+	}	
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView editCategoria(HttpServletRequest request) {
@@ -67,11 +61,32 @@ public class AgendaController {
 		return new ModelAndView("redirect:/");		
 	}
 	
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveCategoria(@ModelAttribute Categorias categorias) {
 		agendaService.saveOrUpdate(categorias);
 		return new ModelAndView("redirect:/");
 	}
+	
+	@RequestMapping(value = "/agregarCategorias", method = RequestMethod.POST)
+	public ModelAndView agregarCategoria(Categorias categorias) {
+		agendaService.saveOrUpdate(categorias);
+		ModelAndView model = new ModelAndView("redirect:/");
+		return model;		
+	}
+	
+	@RequestMapping(value = "/eliminarCategorias", method = RequestMethod.POST)
+	public ModelAndView eliminarCategorias(Categorias categorias) {
+		agendaService.saveOrUpdate(categorias);
+		ModelAndView model = new ModelAndView("redirect:/");
+		return model;	
+		
+		
+	@RequestMapping(value = "/agregarDepartamentos", method = RequestMethod.POST)
+	public ModelAndView agregarDepartamentos(Departamentos departamentos) {
+		agendaService.saveOrUpdateDepartamentos(departamentos);
+		ModelAndView model = new ModelAndView("redirect:/");
+		return model;		
+	}	
 
 	
 

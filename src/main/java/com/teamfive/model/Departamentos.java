@@ -9,18 +9,22 @@ import javax.persistence.*;
 public class Departamentos {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int iddepartamento;
 	private String nombre;
-	
 	public Departamentos(){
 		
 	}
 	
-	public Departamentos(int iddepartamento, String nombre){
-		this.iddepartamento=iddepartamento;
-		this.nombre=nombre;
+	
+
+	public Departamentos(int iddepartamento, String nombre) {
+		super();
+		this.iddepartamento = iddepartamento;
+		this.nombre = nombre;
 	}
+
+
 
 	public int getIddepartamento() {
 		return iddepartamento;

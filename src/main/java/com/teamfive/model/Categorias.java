@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Categorias {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int idcategorias;
 	private String nombre;
 	private String descripcion;

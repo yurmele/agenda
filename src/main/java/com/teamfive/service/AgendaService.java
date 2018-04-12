@@ -14,9 +14,13 @@ public interface AgendaService {
 	public Iterable<Categorias> listCategoria();
 	public Iterable<Departamentos> listDepartamentos();
 	public void savePerson(Personas person);
-	public Optional<Categorias> get(int idcategorias);
 	
+	public Optional<Categorias> get(int idcategorias);
 	public void saveOrUpdate(Categorias categorias);
+	
+	
+	public Optional<Departamentos> getDepartamentos(int iddepartamento);
+	public void saveOrUpdateDepartamentos(Departamentos departamentos);
 	
 	public void delete(int idcategorias);
 }

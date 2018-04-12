@@ -23,8 +23,7 @@ public class AgendaServiceImpl implements AgendaService {
 	@Autowired
 	UserDAOImpl impl;
 	@Autowired
-	CategoriaDAOImpl implCat;	
-	
+	CategoriaDAOImpl implCat;		
 	@Autowired
 	IDepartamentoDAO depardao;
 	
@@ -41,12 +40,24 @@ public class AgendaServiceImpl implements AgendaService {
 	public Optional<Categorias> get(int idcategorias) {
 		return implCat.findById(idcategorias);
 	}
+	
+	@Override
+	public Optional<Departamentos> getDepartamentos(int iddepartamento) {
+		return depardao.findById(iddepartamento);
+	}
+	
 
 	@Override
 	public void saveOrUpdate(Categorias categorias) {
 		implCat.save(categorias);
 
 	}
+	@Override
+	public void saveOrUpdateDepartamentos(Departamentos departamentos) {
+		depardao.save(departamentos);
+
+	}
+	
 
 	@Override
 	public void delete(int idcategorias) {
