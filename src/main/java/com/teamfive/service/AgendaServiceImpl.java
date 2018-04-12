@@ -69,6 +69,11 @@ public class AgendaServiceImpl implements AgendaService {
 		depardao.deleteById(iddepartamento);
 
 	}
+	@Override
+	public void deletePersonas(int idpersonas) {
+		impl.deleteById(idpersonas);
+
+	}
 	
 
 	@Override

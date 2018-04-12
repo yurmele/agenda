@@ -47,6 +47,7 @@
 						<th scope="col">Nombre</th>
 						<th scope="col">Apellidos</th>
 						<th scope="col">Departamento</th>
+						<th scope="col">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,6 +55,9 @@
 						<td th:text="${persona.nombre}"></td>
 						<td th:text="${persona.apellido1 + ' ' + persona.apellido2}"></td>
 						<td>Consulta multitabla</td>
+						<td><a
+							th:href="@{deletePersonas(idpersonas=${persona.idpersonas})}">Borrar</a>
+						</td>
 					</tr>
 
 				</tbody>
@@ -103,7 +107,7 @@
 							<div class="form-group col-md-5">
 								<label for="inputPassword4"> DNI</label> <input type="text"
 									th:field="*{dni}" class="form-control" placeholder="Apellidos">
-							</div>							
+							</div>
 							<div class="form-group col-md-4">
 								<label for="inputState">Departamentos</label> <select
 									id="inputState" class="form-control">

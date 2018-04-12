@@ -61,8 +61,14 @@ public class AgendaController {
 	}
 	@RequestMapping(value = "/deleteDepartamentos")
 	public ModelAndView deleteDepartamentos(HttpServletRequest request) {
-		int depId = Integer.parseInt(request.getParameter("iddepartamento"));
-		agendaService.deleteDepartamento(depId);
+		int personId = Integer.parseInt(request.getParameter("iddepartamento"));
+		agendaService.deleteDepartamento(personId);
+		return new ModelAndView("redirect:/");		
+	}
+	@RequestMapping(value = "/deletePersonas")
+	public ModelAndView deletePersonas(HttpServletRequest request) {
+		int depId = Integer.parseInt(request.getParameter("idpersonas"));
+		agendaService.deletePersonas(depId);
 		return new ModelAndView("redirect:/");		
 	}
 	

@@ -24,4 +24,5 @@ public interface AgendaService {
 	
 	public void delete(int idcategorias);
 	public void deleteDepartamento(int iddepartamento);
+	public void deletePersonas(int idpersonas);
 }
