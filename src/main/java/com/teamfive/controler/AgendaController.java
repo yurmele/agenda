@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,35 +21,44 @@ import com.teamfive.service.AgendaService;
 
 @Controller
 public class AgendaController {
-	
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private AgendaService agendaService;
+	
 	@RequestMapping("/")
 	public ModelAndView handleRequest() throws Exception {		
-		Iterable<Personas> listUsers = agendaService.list();
+		Iterable<Personas> listUsers = agendaService.listPersonas();
 		Iterable<Departamentos> listDepar = agendaService.listDepartamentos();
 		Iterable<Categorias> listCat= agendaService.listCategoria();
+		
 		ModelAndView model = new ModelAndView("inicio");
+		
 		model.addObject("categorias", new Categorias());
 		model.addObject("depart", new Departamentos());
+		model.addObject("person",new Personas());
+		
 		model.addObject("userList", listUsers);
 		model.addObject("departamentos", listDepar);
 		model.addObject("userCat", listCat);
-		model.addObject("person",new Personas());
 		return model;
 	}	
 	
+	
 	@RequestMapping(value = "/agregarcontacto", method = RequestMethod.POST)
-	public ModelAndView newCategoria(Personas person) {
-		agendaService.savePerson(person);
+	public ModelAndView newCategoria(HttpServletRequest request, Personas person) {
+		log.info(request.getParameter("departaname"));
+		agendaService.savePerson(person, Integer.parseInt(request.getParameter("departaname")),
+				Integer.parseInt(request.getParameter("categoriasname")));
 		ModelAndView model = new ModelAndView("redirect:/");
-		return model;		
-	}	
+		return model;
+	}
+
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView editCategoria(HttpServletRequest request) {		
 		int categoriaId = Integer.parseInt(request.getParameter("id"));
-		Optional<Categorias> categoria=agendaService.get(categoriaId);
+		Optional<Categorias> categoria=agendaService.getCategoria(categoriaId);
 		ModelAndView model = new ModelAndView("UserForm");
 		model.addObject("categorias", categoria);
 		return model;		
@@ -56,7 +67,7 @@ public class AgendaController {
 	@RequestMapping(value = "/delete")
 	public ModelAndView deleteCategoria(HttpServletRequest request) {
 		int userId = Integer.parseInt(request.getParameter("idcategorias"));
-		agendaService.delete(userId);
+		agendaService.deleteCategoria(userId);
 		return new ModelAndView("redirect:/");		
 	}
 	@RequestMapping(value = "/deleteDepartamentos")
@@ -74,13 +85,13 @@ public class AgendaController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveCategoria(@ModelAttribute Categorias categorias) {
-		agendaService.saveOrUpdate(categorias);
+		agendaService.saveCategoria(categorias);
 		return new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping(value = "/agregarCategorias", method = RequestMethod.POST)
 	public ModelAndView agregarCategoria(Categorias categorias) {
-		agendaService.saveOrUpdate(categorias);
+		agendaService.saveCategoria(categorias);
 		ModelAndView model = new ModelAndView("redirect:/");
 		return model;		
 	}
@@ -89,7 +100,7 @@ public class AgendaController {
 		
 	@RequestMapping(value = "/agregarDepartamentos", method = RequestMethod.POST)
 	public ModelAndView agregarDepartamentos(Departamentos departamentos) {
-		agendaService.saveOrUpdateDepartamentos(departamentos);
+		agendaService.saveDepartamento(departamentos);
 		ModelAndView model = new ModelAndView("redirect:/");
 		return model;		
 	}

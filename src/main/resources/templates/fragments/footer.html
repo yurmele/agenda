@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer">
+<script type="text/javascript" src="../../js/jquery.min.js"
+		th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" src="../../js/bootstrap.js"
+		th:src="@{/js/bootstrap.js}"></script>
+
+
+	<script type="text/javascript">
+		$('#exampleModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+			var recipient = button.data('whatever') // Extract info from data-* attributes
+			// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+			// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+			var modal = $(this)
+			modal.find('.modal-title').text('New message to ' + recipient)
+			modal.find('.modal-body input').val(recipient)
+
+		});
+		$(document).ready(function() {
+
+			$('#boton').bind({
+				click : function() {
+					$('.tercero').slideToggle(500);
+				},
+			});
+
+			$('#boton2').bind({
+				click : function() {
+					$('.tercero2').slideToggle(500);
+				},
+			});
+			
+			$('#boton3').bind({
+				click : function() {
+					$('.tercero3').slideToggle(500);
+				},
+			});
+
+			$('#boton').bind({
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				},
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				}
+
+			});
+
+			$('#boton2').bind({
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				},
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				}
+
+			});
+			
+			$('#boton3').bind({
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				},
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				}
+
+			});
+
+			$(window).resize(function() {
+				if ($(window).width() < 700) {
+					alert("Estás cambiando el tamaño de la ventana");
+
+				}
+				;
+			});
+		});
+	</script>
+		
+	<div class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Your Website 2018</small>
+        </div>
+      </div>
+      </div>
+	</footer>
+</body>
+</html>

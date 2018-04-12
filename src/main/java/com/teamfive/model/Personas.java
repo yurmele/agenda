@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "personas")
 public class Personas {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idpersonas;
@@ -16,17 +16,24 @@ public class Personas {
 	private String apellido2;
 	private int dni;
 	private Date fechanacimiento;
-	private int idempleado;
 
+	@OneToOne(fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
+	@JoinColumn(name = "idempleado")
+	private Empleados empleados;
 
-
-	
-	public Personas(){
-		
+	public Empleados getEmpleados() {
+		return empleados;
 	}
 
-	public Personas(int idpersonas, String nombre, String apellido1, String apellido2, int dni, Date fechanacimiento,
-			int idEmpleado) {
+	public void setEmpleados(Empleados empleados) {
+		this.empleados = empleados;
+	}
+
+	public Personas() {
+
+	}
+
+	public Personas(int idpersonas, String nombre, String apellido1, String apellido2, int dni, Date fechanacimiento) {
 		super();
 		this.idpersonas = idpersonas;
 		this.nombre = nombre;
@@ -34,10 +41,7 @@ public class Personas {
 		this.apellido2 = apellido2;
 		this.dni = dni;
 		this.fechanacimiento = fechanacimiento;
-		this.idempleado = idEmpleado;
 	}
-
-
 
 	public int getIdpersonas() {
 		return idpersonas;
@@ -87,23 +91,10 @@ public class Personas {
 		this.fechanacimiento = fechanacimiento;
 	}
 
-	public int getIdempleado() {
-		return idempleado;
-	}
-
-	public void setIdempleado(int idempleado) {
-		this.idempleado = idempleado;
-	}
-
 	@Override
 	public String toString() {
 		return "Personas [idpersonas=" + idpersonas + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
-				+ apellido2 + ", dni=" + dni + ", fechanacimiento=" + fechanacimiento + ", idempleado=" + idempleado
-				+ "]";
+				+ apellido2 + ", dni=" + dni + ", fechanacimiento=" + fechanacimiento + "]";
 	}
-
-
-	
-	
 
 }

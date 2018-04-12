@@ -1,14 +1,16 @@
 package com.teamfive.model;
 
-import java.util.Date;
-import java.sql.*;
-import javax.persistence.*;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "empleados")
-
-
-
 public class Empleados {
 	
 	@Id
@@ -16,19 +18,16 @@ public class Empleados {
 	private int idempleados;
 	private String codempleado;
 	private int salario;
-	private Date fechaalta;
+	private LocalDate  fechaalta;
 	private int iddepartamento;
 	private int idcategoria;
-	
-
-	  
 
 
 	public Empleados(){
 		
 	}
 
-	public Empleados( String codEmpleado, int salario, Date fechaAlta, int idDepartamento,
+	public Empleados( String codEmpleado, int salario, LocalDate fechaAlta, int idDepartamento,
 			int idCategoria) {
 		super();
 		this.codempleado = codEmpleado;
@@ -62,11 +61,11 @@ public class Empleados {
 		this.salario = salario;
 	}
 
-	public Date getFechaalta() {
+	public LocalDate getFechaalta() {
 		return fechaalta;
 	}
 
-	public void setFechaalta(Date fechaalta) {
+	public void setFechaalta(LocalDate fechaalta) {
 		this.fechaalta = fechaalta;
 	}
 

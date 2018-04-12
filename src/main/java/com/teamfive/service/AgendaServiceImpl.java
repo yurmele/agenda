@@ -1,6 +1,7 @@
 package com.teamfive.service;
 
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,23 +22,24 @@ public class AgendaServiceImpl implements AgendaService {
 
 	
 	@Autowired
-	UserDAOImpl impl;
+	UserDAOImpl implPersonas;
 	@Autowired
 	CategoriaDAOImpl implCat;		
 	@Autowired
 	IDepartamentoDAO depardao;
 	
 	
-	public Iterable<Personas> list() {
-		return impl.findAll();
+	@Override
+	public Iterable<Personas> listPersonas() {
+		// TODO Auto-generated method stub
+		return implPersonas.findAll();
 	}
-	
 	public Iterable<Categorias> listCategoria() {
 		return implCat.findAll();
 	}
 	
 	@Override
-	public Optional<Categorias> get(int idcategorias) {
+	public Optional<Categorias> getCategoria(int idcategorias) {
 		return implCat.findById(idcategorias);
 	}
 	
@@ -48,19 +50,19 @@ public class AgendaServiceImpl implements AgendaService {
 	
 
 	@Override
-	public void saveOrUpdate(Categorias categorias) {
+	public void saveCategoria(Categorias categorias) {
 		implCat.save(categorias);
 
 	}
 	@Override
-	public void saveOrUpdateDepartamentos(Departamentos departamentos) {
+	public void saveDepartamento(Departamentos departamentos) {
 		depardao.save(departamentos);
 
 	}
 	
 
 	@Override
-	public void delete(int idcategorias) {
+	public void deleteCategoria(int idcategorias) {
 		implCat.deleteById(idcategorias);
 
 	}
@@ -71,22 +73,11 @@ public class AgendaServiceImpl implements AgendaService {
 	}
 	@Override
 	public void deletePersonas(int idpersonas) {
-		impl.deleteById(idpersonas);
+		implPersonas.deleteById(idpersonas);
 
 	}
 	
 
-	@Override
-	public void savePerson(Personas per) {///save person tambien deberia enviar desde control el departamento que recibio del combobox
-	
-		/*
-		 * Empleados em=generarEmpleado(null);
-		per.setEmpleados(em);
-		em.setPersonas(per);*/
-		
-		impl.save(per);
-		
-	}
 	
 	@Override
 	public Iterable<Departamentos> listDepartamentos() {
@@ -94,17 +85,28 @@ public class AgendaServiceImpl implements AgendaService {
 		return depardao.findAll();
 	}
 	
-	public Empleados generarEmpleado(Departamentos depar) {
-		//Iterable<Departamentos> depars= listDepartamentos();
-		Empleados em = null;
-		
-		/*
-		if(depar.getNombre()=="RRHH") {// agregar en departamento una columna mas de 1 a 5 para saber rango de sueldos
-		}*/
-		em = new  Empleados("A231",1500,null,0,0);
+	@Override
+	public void savePerson(Personas per,int depar,int cate) {/// save person tambien deberia enviar desde control el departamento que
+											/// recibio del combobox
+		Empleados empl = generarEmpleado(depar,cate);
+		per.setEmpleados(empl);
+		implPersonas.save(per);
 
-		
-		
+	}
+
+	
+
+	public Empleados generarEmpleado(int  depar,int cate) {
+		LocalDate localDate = LocalDate.now();
+		Empleados em = null;
+		/*
+		 * if(depar.getNombre()=="RRHH") {// agregar en departamento una columna mas de
+		 * 1 a 5 para saber rango de sueldos }
+		 */
+		em = new Empleados("A231", 1500, localDate, depar, cate);
+
 		return em;
 	}
+
+
 }
