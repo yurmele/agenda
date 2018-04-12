@@ -11,15 +11,39 @@
 
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Navbar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link"
+					href="inicio.html">Inicio<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Backoffice </a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">Categorias</a> <a
+							class="dropdown-item" href="#">Departamentos</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div></li>
+			</ul>
+		</div>
+	</nav>
 
 	<div class="container" style="border: 1px solid #cecece;">
 		<div class="row">
 			<table class="table col col-lg-12">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
 						<th scope="col">Nombre</th>
 						<th scope="col">Apellidos</th>
 						<th scope="col">Departamento</th>
@@ -27,10 +51,9 @@
 				</thead>
 				<tbody>
 					<tr th:each="persona : ${userList}">
-						<th scope="row">1</th>
 						<td th:text="${persona.nombre}"></td>
 						<td th:text="${persona.apellido1 + ' ' + persona.apellido2}"></td>
-						<td>@mdo</td>
+						<td>Consulta multitabla</td>
 					</tr>
 
 				</tbody>
@@ -43,41 +66,6 @@
 		</div>
 
 	</div>
-
-
-
-
-
-
-	<div class="container">
-		<form th:action="@{/agregarCategorias}" th:object="${categorias}"
-			method="post">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="">Crear Categoria</span>
-				</div>
-				<input type="text" class="form-control" placeholder="Nombre"
-					th:field="*{nombre}"> <input type="text"
-					class="form-control" placeholder="Descripcion"
-					th:field="*{descripcion}">
-				<button type="submit" class="btn btn-primary">Crear</button>
-			</div>
-		</form>
-	</div>
-	<div class="container">
-		<form th:action="@{/agregarDepartamentos}" th:object="${depart}"
-			method="post">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="">Crear Categoria</span>
-				</div>
-				<input type="text" class="form-control" placeholder="Nombre"
-					th:field="*{nombre}">
-				<button type="submit" class="btn btn-primary">Crear</button>
-			</div>
-		</form>
-	</div>
-
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -115,12 +103,7 @@
 							<div class="form-group col-md-5">
 								<label for="inputPassword4"> DNI</label> <input type="text"
 									th:field="*{dni}" class="form-control" placeholder="Apellidos">
-							</div>
-							<div class="form-group col-md-2">
-								<label for="inputPassword4"> for</label> <input type="text"
-									th:field="*{idempleado}" class="form-control"
-									placeholder="Apellidos">
-							</div>
+							</div>							
 							<div class="form-group col-md-4">
 								<label for="inputState">Departamentos</label> <select
 									id="inputState" class="form-control">
@@ -143,8 +126,7 @@
 			<table class="table col col-lg-12">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
-						<th scope="col">IdCategoria</th>
+
 						<th scope="col">Nombre</th>
 						<th scope="col">Descripcion</th>
 						<th scope="col">Acciones</th>
@@ -152,29 +134,65 @@
 				</thead>
 				<tbody>
 					<tr th:each="categoria : ${userCat}">
-						<th scope="row">1</th>
-						<td th:text="${categoria.idcategorias}"></td>
-						<td th:text="${categoria.nombre + ' ' + categoria.descripcion}"></td>
-
-						<td>@mdo</td>
-
-						
-						<td><a th:href="@{delete(idcategorias=${categoria.idcategorias})}">Delete</a>
+						<td th:text="${categoria.nombre}"></td>
+						<td th:text="${categoria.descripcion}"></td>
+						<td><a
+							th:href="@{delete(idcategorias=${categoria.idcategorias})}">Borrar</a>
 						</td>
-
-
 					</tr>
-
 				</tbody>
 			</table>
-			<div class="col col-lg-12 text-center">
-				<input class="btn btn-circle-micro btn-primary  center-block"
-					data-toggle="modal" data-target="#exampleModal" type="image"
-					th:src="@{/img/add.png}" />
+			<div class="container">
+				<form th:action="@{/agregarCategorias}" th:object="${categorias}"
+					method="post">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="">Crear Categoria</span>
+						</div>
+						<input type="text" class="form-control" placeholder="Nombre"
+							th:field="*{nombre}"> <input type="text"
+							class="form-control" placeholder="Descripcion"
+							th:field="*{descripcion}">
+						<button type="submit" class="btn btn-primary">Crear</button>
+					</div>
+				</form>
 			</div>
 		</div>
-
 	</div>
+	<div class="container" style="border: 1px solid #cecece;">
+		<div class="row">
+			<table class="table col col-lg-12">
+				<thead>
+					<tr>
+						<th scope="col">Nombre</th>
+						<th scope="col">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="departamentos : ${departamentos}">
+						<td th:text="${departamentos.nombre}"></td>
+						<td><a
+							th:href="@{deleteDepartamentos(iddepartamento=${departamentos.iddepartamento})}">Borrar</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="container">
+			<form th:action="@{/agregarDepartamentos}" th:object="${depart}"
+				method="post">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="">Crear Departamento</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Nombre"
+						th:field="*{nombre}">
+					<button type="submit" class="btn btn-primary">Crear</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
 
 
 

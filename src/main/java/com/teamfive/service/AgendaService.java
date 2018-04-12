@@ -23,4 +23,5 @@ public interface AgendaService {
 	public void saveOrUpdateDepartamentos(Departamentos departamentos);
 	
 	public void delete(int idcategorias);
+	public void deleteDepartamento(int iddepartamento);
 }

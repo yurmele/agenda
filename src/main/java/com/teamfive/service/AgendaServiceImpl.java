@@ -64,6 +64,12 @@ public class AgendaServiceImpl implements AgendaService {
 		implCat.deleteById(idcategorias);
 
 	}
+	@Override
+	public void deleteDepartamento(int iddepartamento) {
+		depardao.deleteById(iddepartamento);
+
+	}
+	
 
 	@Override
 	public void savePerson(Personas per) {///save person tambien deberia enviar desde control el departamento que recibio del combobox

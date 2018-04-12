@@ -59,6 +59,12 @@ public class AgendaController {
 		agendaService.delete(userId);
 		return new ModelAndView("redirect:/");		
 	}
+	@RequestMapping(value = "/deleteDepartamentos")
+	public ModelAndView deleteDepartamentos(HttpServletRequest request) {
+		int depId = Integer.parseInt(request.getParameter("iddepartamento"));
+		agendaService.deleteDepartamento(depId);
+		return new ModelAndView("redirect:/");		
+	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveCategoria(@ModelAttribute Categorias categorias) {
@@ -80,8 +86,6 @@ public class AgendaController {
 		agendaService.saveOrUpdateDepartamentos(departamentos);
 		ModelAndView model = new ModelAndView("redirect:/");
 		return model;		
-	}	
-
-	
+	}
 
 }
