@@ -45,8 +45,7 @@ public class AgendaController {
 	}	
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView editCategoria(HttpServletRequest request) {
-		System.out.println("Hola tio");
+	public ModelAndView editCategoria(HttpServletRequest request) {		
 		int categoriaId = Integer.parseInt(request.getParameter("id"));
 		Optional<Categorias> categoria=agendaService.get(categoriaId);
 		ModelAndView model = new ModelAndView("UserForm");
@@ -54,7 +53,7 @@ public class AgendaController {
 		return model;		
 	}
 	
-	@RequestMapping(value = "/delete/{idcategorias}", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete")
 	public ModelAndView deleteCategoria(HttpServletRequest request) {
 		int userId = Integer.parseInt(request.getParameter("idcategorias"));
 		agendaService.delete(userId);
