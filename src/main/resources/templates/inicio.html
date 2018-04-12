@@ -6,71 +6,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <title>LISTADO DE USUARIOS</title>
-<script>
-	$(document).ready(function() {
-
-		$('#boton').bind({
-			click : function() {
-				$('.tercero').slideToggle(500);
-			},
-		});
-
-		$('#boton2').bind({
-			click : function() {
-				$('.tercero2').slideToggle(500);
-			},
-		});
-		
-		$('#boton3').bind({
-			click : function() {
-				$('.tercero3').slideToggle(500);
-			},
-		});
-
-		$('#boton').bind({
-			click : function() {
-				$(this).html("Ocultar/Mostrar");
-			},
-			click : function() {
-				$(this).html("Ocultar/Mostrar");
-			}
-
-		});
-
-		$('#boton2').bind({
-			click : function() {
-				$(this).html("Ocultar/Mostrar");
-			},
-			click : function() {
-				$(this).html("Ocultar/Mostrar");
-			}
-
-		});
-		
-		$('#boton3').bind({
-			click : function() {
-				$(this).html("Ocultar/Mostrar");
-			},
-			click : function() {
-				$(this).html("Ocultar/Mostrar");
-			}
-
-		});
-
-		$(window).resize(function() {
-			if ($(window).width() < 700) {
-				alert("Estás cambiando el tamaño de la ventana");
-
-			}
-			;
-		});
-	});
-</script>
-
-
-
-
-
 <link href="webjars/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" media="screen" />
 
@@ -308,7 +243,64 @@
 			modal.find('.modal-body input').val(recipient)
 
 		});
-	</script>
+		$(document).ready(function() {
 
+			$('#boton').bind({
+				click : function() {
+					$('.tercero').slideToggle(500);
+				},
+			});
+
+			$('#boton2').bind({
+				click : function() {
+					$('.tercero2').slideToggle(500);
+				},
+			});
+			
+			$('#boton3').bind({
+				click : function() {
+					$('.tercero3').slideToggle(500);
+				},
+			});
+
+			$('#boton').bind({
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				},
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				}
+
+			});
+
+			$('#boton2').bind({
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				},
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				}
+
+			});
+			
+			$('#boton3').bind({
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				},
+				click : function() {
+					$(this).html("Ocultar/Mostrar");
+				}
+
+			});
+
+			$(window).resize(function() {
+				if ($(window).width() < 700) {
+					alert("Estás cambiando el tamaño de la ventana");
+
+				}
+				;
+			});
+		});
+	</script>
 </body>
 </html>
