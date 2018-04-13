@@ -107,6 +107,11 @@ public class AgendaServiceImpl implements AgendaService {
 
 		return em;
 	}
+	@Override
+	public  Optional<Personas> findbyIdPerson(int id) {
+		// TODO Auto-generated method stub
+		return implPersonas.findById(id);
+	}
 
 
 }

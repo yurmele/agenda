@@ -2,3 +2,9 @@ html body {
     background-color: rgba(247,247,247);
 
 }
+#inputCool {
+    background-color: transparent;
+    border: 0px solid;
+    height: 20px;
+    width: 160px;
+}

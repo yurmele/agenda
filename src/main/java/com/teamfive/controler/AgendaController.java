@@ -46,10 +46,24 @@ public class AgendaController {
 	
 	
 	@RequestMapping(value = "/agregarcontacto", method = RequestMethod.POST)
-	public ModelAndView newCategoria(HttpServletRequest request, Personas person) {
-		log.info(request.getParameter("departaname"));
+	public ModelAndView newEmpleado(HttpServletRequest request, Personas person) {
+		//log.info(request.getParameter("departaname"));
+		
 		agendaService.savePerson(person, Integer.parseInt(request.getParameter("departaname")),
 				Integer.parseInt(request.getParameter("categoriasname")));
+		ModelAndView model = new ModelAndView("redirect:/");
+		return model;
+	}
+	@RequestMapping(value = "/modificarEmpleado", method = RequestMethod.POST)
+	public ModelAndView modifcarEmpleado(int id,String nomb,String ap1,String ap2) {
+		log.info(ap1);
+		Optional<Personas> user = agendaService.findbyIdPerson(id);
+		Personas per=user.get();
+		per.setNombre(nomb);
+		per.setApellido1(ap1);
+		per.setApellido2(ap2);
+				agendaService.savePerson(per,4,4);
+		//agendaService.savePerson(person, 4,4);
 		ModelAndView model = new ModelAndView("redirect:/");
 		return model;
 	}

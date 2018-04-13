@@ -14,40 +14,106 @@
 				<br>
 				<div class="tercero3">
 					<div class="row">
-						<table class="table col col-lg-12">
-							<thead>
-								<tr>
-									<th scope="col">Nombre</th>
-									<th scope="col">Apellidos</th>
-									<th scope="col">Departamento</th>
-									<th scope="col">Categoria</th>
-									<th scope="col">Acciones</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="persona : ${userList}">
-									<td th:text="${persona.nombre}"></td>
-									<td th:text="${persona.apellido1 + ' ' + persona.apellido2}"></td>
-									<td th:each="depar : ${departamentos}" th:object="${depar}"
-										th:if="${depar.iddepartamento} == *{persona.empleados.iddepartamento}"
-										th:text="${depar.nombre}"></td>
-	
-									<td th:each="cate : ${userCat}" th:object="${cate}"
-										th:if="${cate.idcategorias} == *{persona.empleados.idcategoria}"
-										th:text="${cate.nombre}">
-									<td><a
-										th:href="@{deletePersonas(idpersonas=${persona.idpersonas})}">Borrar</a>
-									</td>
-									
+						<form th:action="@{/agregarcontacto}">
+							<table class="table col col-lg-12">
+								<thead>
+									<tr>
+										<th scope="col">Nombre</th>
+										<th scope="col">Apellidos</th>
+										<th scope="col">Departamento</th>
+										<th scope="col">Categoria</th>
+										<th scope="col">Acciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="persona : ${userList}">
 
-								</tr>
+										<td><input style="border: 0;" type="text"
+											th:name="${persona.nombre}" th:value="${persona.nombre}">
+										</td>
+										<td th:text="${persona.apellido1 + ' ' + persona.apellido2}"></td>
+										<td th:each="depar : ${departamentos}" th:object="${depar}"
+											th:if="${depar.iddepartamento} == *{persona.empleados.iddepartamento}"
+											th:text="${depar.nombre}"></td>
 
-							</tbody>
-						</table>
+										<td th:each="cate : ${userCat}" th:object="${cate}"
+											th:if="${cate.idcategorias} == *{persona.empleados.idcategoria}"
+											th:text="${cate.nombre}">
+										<td><a
+											th:href="@{deletePersonas(idpersonas=${persona.idpersonas})}">Borrar</a>
+											<a
+											th:href="@{deletePersonas(idpersonas=${persona.idpersonas})}">modifcar</a>
+											<button type="submit" class="btn btn-primary">Agregar</button>
+										</td>
+
+									</tr>
+
+								</tbody>
+							</table>
+						</form>
 						<div class="col col-lg-12 text-center">
 							<button type="button" data-toggle="modal"
 								data-target="#exampleModal" class="btn btn-primary">Agregar</button>
 							<button id="boton3" class="btn btn-primary">Ocultar/Mostrar</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-body">
+				<h2 align="center">Listado de personas</h2>
+				<br>
+				<div class="tercero3">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-xs-4 col-sm-2">
+										<h5>Nombre</h5>
+									</div>
+									<div class="col-xs-4 col-sm-2">Apellido</div>
+									<div class="col-xs-4 col-sm-2">Departamento</div>
+									<div class="col-xs-4 col-sm-2">DNI</div>
+									<div class="col-xs-4 col-sm-2">categoria</div>
+									<div class="col-xs-4 col-sm-2">Acciones</div>
+
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="row" th:each="pergaia : ${userList}">
+
+									<form class="col-sm-12" th:action="@{/modificarEmpleado}" th:object="${pergaia}"  method="post">
+										<div class="col-sm-12">
+											<div class="row">
+												<div class="col-xs-4 col-sm-2">
+													<input type="text" th:name="nomb" th:value="*{nombre}" 
+														class="form-control" placeholder="Nombre">
+														<input type="hidden"  th:value="*{idpersonas}"  th:name="id" />
+												</div>
+												<div class="col-xs-4 col-sm-2">
+													<input type="text" th:name="ap1" th:value="*{apellido1}" 
+														class="form-control" placeholder="Nombre">
+												</div>
+												<div class="col-xs-4 col-sm-2">
+													<input type="text"th:name="ap2" th:value="*{apellido2}" 
+														class="form-control" placeholder="Nombre">
+												</div>
+												<div class="col-xs-4 col-sm-2">DNI</div>
+												<div class="col-xs-4 col-sm-2">categoria</div>
+												<div class="col-xs-4 col-sm-2">
+													<button type="submit" class="btn btn-primary">Modifcar</button>
+												</div>
+											</div>
+										</div>
+									</form>
+
+								</div>
+							</div>
 						</div>
 					</div>
 

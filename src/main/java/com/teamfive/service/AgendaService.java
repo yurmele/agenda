@@ -23,4 +23,6 @@ public interface AgendaService {
 	public void deleteCategoria(int idcategorias);
 	public void deleteDepartamento(int iddepartamento);
 	public void deletePersonas(int idpersonas);
+	
+	public  Optional<Personas> findbyIdPerson(int id);
 }
